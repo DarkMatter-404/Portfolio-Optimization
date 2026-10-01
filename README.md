@@ -12,7 +12,7 @@ reasoned constraints can close the gap to a simple equally weighted portfolio.
 > (daily Sharpe ratio **0.100** over 2025–2026 against **0.062** for equal weights), but its lead is smaller than
 > the statistical noise, and we say so.
 
-[Read the final report](DBA5106_Group20_Project_Report.pdf) · [Open the notebook](DBA5106_Group20_Portfolio_Optimization.ipynb)
+[Read the final report](DBA5106_Group20_Project_Report.pdf) · [Open the notebook](DBA5106_Group20_Portfolio_Optimization.ipynb) · [Get the data](100_Portfolios_10x10_Daily.csv)
 
 ## The assignment
 
@@ -117,6 +117,7 @@ the results would reintroduce the optimizer's curse.
 | --- | --- |
 | [DBA5106_Group20_Project_Report.pdf](DBA5106_Group20_Project_Report.pdf) | Final group report (cover, six pages, one-page appendix): method, every exploration with its reasoning, results, final choice and limitations. |
 | [DBA5106_Group20_Portfolio_Optimization.ipynb](DBA5106_Group20_Portfolio_Optimization.ipynb) | The complete analysis: data checks, MinVar as a regression, LASSO and Ridge, the five explorations, the rolling-window backtest, and all tables and figures, with saved outputs. |
+| [100_Portfolios_10x10_Daily.csv](100_Portfolios_10x10_Daily.csv) | The exact data file we used: daily returns (%) of 100 size and book-to-market portfolios, 1926-07-01 to 2026-07-31. |
 
 Start with the report for the argument, then open the notebook. Its saved outputs show every result without running
 any code.
@@ -126,8 +127,9 @@ any code.
 We used the daily **100 Portfolios Formed on Size and Book-to-Market (10 × 10)** file from
 [Kenneth French's Data Library](https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html). We kept
 only its second table (*Average Equal Weighted Returns, Daily*), with returns in percent. We removed `ME9 BM10` and
-`BIG HiBM`, which have missing data, leaving 98 assets. Our copy runs from 1926-07-01 to 2026-07-31. The data are not
-included in this repository.
+`BIG HiBM`, which have missing data, leaving 98 assets. Our copy runs from 1926-07-01 to 2026-07-31 (26,296 trading days) and is included here as
+[100_Portfolios_10x10_Daily.csv](100_Portfolios_10x10_Daily.csv), exactly as we used it. The two columns with missing
+data are removed by the notebook, not in the file.
 
 ## Run the notebook
 
@@ -140,13 +142,15 @@ python -m pip install numpy==2.5.3 pandas==3.0.6 scikit-learn==1.9.1 cvxpy==1.9.
 python -m jupyter lab
 ```
 
-Before running, download the daily file from the library above. Keep only the second table (its one title line,
-then the header and data), save it as `100_Portfolios_10x10_Daily.csv` next to the notebook, and run all cells. The
-notebook writes its daily results and figures to `results/`. Without saved results, the full rolling-window backtest
-for both periods takes about three hours on a laptop. French's library revises past data over time, so a newer
+The data file sits next to the notebook, where the notebook looks for it, so you can open the notebook and run all
+cells. It writes its daily results and figures to `results/`. The full rolling-window backtest for both periods takes
+about three hours on a laptop. To use newer data, download the daily file from the library above and keep only its
+second table (one title line, then the header and data). French's library revises past data over time, so a newer
 download can give slightly different numbers.
 
 **Publication checks:** the notebook is the submitted file, byte for byte, renamed from `portfolio_project1.ipynb`.
+The data file is the team's frozen copy (SHA-256 `d1ac18e6…`); with it in place, the notebook's loading cells and the
+three debugging checks run and pass.
 The report is the submitted PDF with one change on the cover: student IDs were removed and the code file name updated
 to match this repository. Pages 2 to 8 are unchanged. A fresh end-to-end run in a new environment has not been
 repeated for this portfolio edition.
@@ -166,5 +170,6 @@ encouraged, we used Claude (Anthropic) to help write and check code and to draft
 declaration gives the details.
 
 The assignment objective follows the course brief *Portfolio Optimization* by Dr. Long Zhao (NUS, 2026). The data
-come from Kenneth French's Data Library and are not redistributed here. No open-source licence is asserted for the
-jointly authored submission.
+come from Kenneth French's Data Library, which makes them freely available; they are included unchanged so the
+analysis can be reproduced, and remain subject to the library's own terms. No open-source licence is asserted for the
+jointly authored submission or the data.
