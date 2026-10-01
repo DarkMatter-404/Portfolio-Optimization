@@ -32,11 +32,11 @@ On the validation period (2026-01-02 to 2026-07-31), the "optimized" MinVar port
 only **0.021**, against **0.111** for EW. This echoes DeMiguel, Garlappi and Uppal (2009), where none of 14
 sophisticated models consistently beats the 1/N rule.
 
-The brief then turns MinVar into a regression. Writing the weights as $w = w_{EW} - N\beta$, where
-$N = \begin{pmatrix} I_{p-1} \\ -\mathbf{1}^{\top} \end{pmatrix}$ keeps the weights summing to one, MinVar becomes an
-ordinary least-squares problem:
+The brief then turns MinVar into a regression. The weights are written as $w = w_{EW} - N\beta$, where $N$ is
+the 97 × 97 identity matrix with a row of −1s added below it, so the weights always sum to one. With $R$ the matrix
+of past returns, MinVar becomes an ordinary least-squares problem:
 
-$$\min_{\alpha,\beta}\ \lVert y - (\alpha + X\beta) \rVert_2^2, \qquad y = R\,w_{EW}, \qquad X = RN .$$
+$$\min_{\alpha,\beta}\ \lVert y - (\alpha + X\beta) \rVert_2^2, \qquad y = R w_{EW}, \qquad X = RN .$$
 
 With 97 coefficients estimated from 126 days, overfitting is expected. What we were asked to do:
 
